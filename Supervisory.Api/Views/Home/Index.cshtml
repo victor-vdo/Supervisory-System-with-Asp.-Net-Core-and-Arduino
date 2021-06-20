@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Sistema supervisório em C#";
+}
+
+<div class="text-center">
+    <textarea id="txaDashboard" disabled="disabled" readonly></textarea><br />
+    <label>Led 1:</label>
+    <input id="led1" value="off" type="button" onclick="turnLed1On()"/> &nbsp;
+    <label>Led 2:</label>
+    <input id="led2"  value="off" type="button" onclick="turnLed2On()"/>
+</div>
+
+<style>
+    #txaDashboard {
+        height: 30em;
+        width: 50em;
+        border: 1px solid #000000;
+        background-color: #CCCCCC;
+    }
+
+    #led1 {
+        width: 80px;
+        background-color: darkred;
+        color:white;
+    }
+    #led2 {
+        width: 80px;
+        background-color: darkred;
+        color: white;
+    }
+</style>
+
+
+<script>
+    const button = document.querySelector('input');
+    function updateButton(button) {
+        if (button.value === 'off') {
+            button.value = 'on';
+            button.style.backgroundColor = 'lime';
+        } else {
+            button.value = 'off';
+            button.style.backgroundColor = 'darkred';
+        }
+    }
+
+    function turnLed1On() {
+        console.log('Led 1:');
+        var value = document.getElementById("led1");
+        value.addEventListener('click', updateButton(value));
+    }
+
+    function turnLed2On() {
+        console.log('Led 2:');
+        var value = document.getElementById("led2");
+        value.addEventListener('click', updateButton(value));
+    }
+</script>
