@@ -36,11 +36,12 @@ namespace Supervisory.Api.Controllers
 
         // POST: TemperatureController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(TemperatureViewModel model)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([FromBody]TemperatureViewModel model)
         {
             try
             {
+                _service.Create(model);
                 return RedirectToAction(nameof(model));
             }
             catch

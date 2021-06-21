@@ -1,11 +1,9 @@
 ﻿using Supervisory.Domain.Interfaces.Repositories;
 using Supervisory.Domain.Models;
 using Supervisory.Infra.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace Supervisory.Infra.Repositories
 {
@@ -26,7 +24,16 @@ namespace Supervisory.Infra.Repositories
 
         public List<Temperature> ReadAll()
         {
-            return  _context.Temperatures.ToList().OrderBy(p => p.Date).ToList();
+            try
+            {
+                var list = _context.Temperatures.ToList().OrderBy(p => p.Date).ToList();
+                return list;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Erro ao tentar buscar a lista de temperaturas ! \n Erro: {ex.Message}");
+            }
         }
 
   
